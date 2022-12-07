@@ -8,23 +8,28 @@ public class Main {
 
     public static void step(double[] x) {
         double functionFirst = function(x);
-        double k = 1.4;
-        for (int i = 0; i < 5; i++) {
-            x[i] += k;
-            if (function(x) < functionFirst) {
-                while (function(x) < functionFirst) {
-                    functionFirst = function(x);
-                    x[i] += k;
-                }
-            } else {
-                x[i] -= k;
-                x[i] -= k;
-                if (function(x) < functionFirst) {
-                    while (function(x) < functionFirst) {
+        double k = 1;
+        int check = 0;
+        while (check != 5) {
+            check = 0;
+            for (int i = 0; i < 5; i++) {
+                x[i] += k;
+                if (!(function(x) < functionFirst)) {
+                    x[i] -= 2 * k;
+                    if (!(function(x) < functionFirst)) {
+                        x[i] += k;
+                        check++;
+                    } else {
                         functionFirst = function(x);
-                        x[i] -= k;
+                        check = 0;
                     }
+                } else {
+                    functionFirst = function(x);
+                    check = 0;
                 }
+            }
+            if (functionFirst < -2137420690) {
+                //  break;
             }
         }
     }
@@ -40,12 +45,10 @@ public class Main {
             step(x1);
         } while (!Arrays.equals(x1, x));
 
-
         for (int i = 0; i < 5; i++) {
             System.out.println(" ");
             System.out.print(" ");
             System.out.print(x[i]);
         }
-
     }
 }
