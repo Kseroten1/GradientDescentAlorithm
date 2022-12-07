@@ -29,7 +29,7 @@ public class Main {
                 }
             }
             if (functionFirst < -2137420690) {
-                //  break;
+                  break;
             }
         }
     }
